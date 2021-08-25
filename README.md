@@ -7,7 +7,6 @@ Convert audio files between Tencent apps (Weixin / Wechat, QQ) and Silk codec wi
 ```
 $ npm install wx-voice --save
 $ npm install wx-voice -g
-$ wx-voice compile
 ```
 
 

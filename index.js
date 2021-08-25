@@ -11,6 +11,7 @@
 const EventEmitter = require('events');
 const { spawn } = require('child_process');
 const Ffmpeg = require('fluent-ffmpeg');
+const FfmpegStatic = require('ffmpeg-static');
 
 const os = require('os');
 const fs = require('fs');
@@ -20,11 +21,9 @@ const dataUri = require('strong-data-uri');
 const readChunk = require('read-chunk');
 const randomatic = require('randomatic');
 
-
-
 class WxVoice extends EventEmitter {
 
-    constructor(tempDir = os.tmpdir(), ffmpegPath) {
+    constructor(tempDir = os.tmpdir(), ffmpegPath = FfmpegStatic) {
         super();
 
         this._tempDir    = path.resolve(tempDir);

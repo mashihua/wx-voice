@@ -149,7 +149,7 @@ class WxVoice extends EventEmitter {
             tempFile = this._getTempFile(input + ".pcm");
             this._convert(false, true, input, tempFile, options, (tempOutput) => {
                 if (tempOutput) {
-                    this._encodeSilk(tempOutput, output, options.format, (res) => {
+                    this._encodeSilk(tempOutput, output, options.format, options.rate || '12000', (res) => {
                         this._deleteTempFile(tempOutput);
                         callback(res);
                     });
@@ -271,9 +271,9 @@ class WxVoice extends EventEmitter {
     }
 
 
-    _encodeSilk(input, output, type, callback) {
+    _encodeSilk(input, output, type, rate, callback) {
         var flag    = (type == "silk_amr" ? "-tencent_amr" : "-tencent"),
-            encoder = spawn(this._getSilkSDK("encoder"), [input, output, flag]);
+            encoder = spawn(this._getSilkSDK("encoder"), [input, output, flag, '-rate, rate]);
 
         // Allow it to output
         encoder.stdout.on('data', (data) => { });
